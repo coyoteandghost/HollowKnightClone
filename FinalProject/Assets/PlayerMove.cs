@@ -61,6 +61,6 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        currJumpTime = 0;
+        if (collision.transform.position.y < transform.position.y) currJumpTime = 0;
     }
 }
