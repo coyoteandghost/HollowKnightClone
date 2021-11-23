@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     int dir = 1;
     int vertDir = 1;
     bool verticalSlash = false;
+    GameObject currentAttack;
 
     float hmove;
     Rigidbody2D rb;
@@ -41,7 +42,11 @@ public class PlayerMove : MonoBehaviour
             vertDir = (int)Mathf.Sign(Input.GetAxis("Vertical"));
             verticalSlash = true;
         }
-        else if (hmove != 0) dir = (int)Mathf.Sign(hmove);
+        else
+        {
+            verticalSlash = false;
+            if (hmove != 0) dir = (int)Mathf.Sign(hmove);
+        }
     }
     void CheckJump()
     {
@@ -61,7 +66,19 @@ public class PlayerMove : MonoBehaviour
         currAttackTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.X) && currAttackTime > attackReload)
         {
-            Instantiate(weaponSlash, new Vector3(transform.position.x + (1.3f * dir), transform.position.y - 0.1f, transform.position.z), transform.rotation, transform);
+            Quaternion slashRot;
+            Vector3 slashPos;
+            if (verticalSlash)
+            {
+                slashRot = Quaternion.Euler(0, 0, 90 * vertDir);
+                slashPos = new Vector3(transform.position.x, transform.position.y + (1.6f * vertDir), transform.position.z);
+            }
+            else
+            {
+                slashRot = Quaternion.Euler(Vector3.zero);
+                slashPos = new Vector3(transform.position.x + (1.3f * dir), transform.position.y - 0.1f, transform.position.z);
+            }
+            currentAttack = Instantiate(weaponSlash, slashPos, transform.rotation * slashRot, transform);
             currAttackTime = 0f;
         }
     }
