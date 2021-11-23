@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     float currAttackTime = 0f;
     float currJumpTime = 0f;
     int dir = 1;
+    int vertDir = 1;
+    bool verticalSlash = false;
 
     float hmove;
     Rigidbody2D rb;
@@ -32,9 +34,14 @@ public class PlayerMove : MonoBehaviour
 
     void CheckMove()
     {
-        hmove = Input.GetAxisRaw("Horizontal") * speed;
+        hmove = Input.GetAxis("Horizontal") * speed;
         rb.velocity = new Vector2(hmove, rb.velocity.y);
-        if (hmove != 0) dir = (int)Mathf.Sign(hmove);
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            vertDir = (int)Mathf.Sign(Input.GetAxis("Vertical"));
+            verticalSlash = true;
+        }
+        else if (hmove != 0) dir = (int)Mathf.Sign(hmove);
     }
     void CheckJump()
     {
@@ -54,7 +61,7 @@ public class PlayerMove : MonoBehaviour
         currAttackTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.X) && currAttackTime > attackReload)
         {
-            Instantiate(weaponSlash, new Vector3(transform.position.x + (1.05f * dir), transform.position.y - 0.1f, transform.position.z), transform.rotation, transform);
+            Instantiate(weaponSlash, new Vector3(transform.position.x + (1.3f * dir), transform.position.y - 0.1f, transform.position.z), transform.rotation, transform);
             currAttackTime = 0f;
         }
     }
