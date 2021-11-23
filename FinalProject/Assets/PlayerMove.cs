@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameObject weaponSlash;
+
     public float speed;
     public float jumpSpeed;
     public float jumpHoldTime;
     public float attackReload;
-    float currAttackTime;
-    float currJumpTime;
+    float currAttackTime = 0f;
+    float currJumpTime = 0f;
+    int dir = 1;
 
     float hmove;
     Rigidbody2D rb;
@@ -31,6 +34,7 @@ public class PlayerMove : MonoBehaviour
     {
         hmove = Input.GetAxisRaw("Horizontal") * speed;
         rb.velocity = new Vector2(hmove, rb.velocity.y);
+        if (hmove != 0) dir = (int)Mathf.Sign(hmove);
     }
     void CheckJump()
     {
@@ -50,7 +54,8 @@ public class PlayerMove : MonoBehaviour
         currAttackTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.X) && currAttackTime > attackReload)
         {
-
+            Instantiate(weaponSlash, new Vector3(transform.position.x + (1.05f * dir), transform.position.y - 0.1f, transform.position.z), transform.rotation, transform);
+            currAttackTime = 0f;
         }
     }
 

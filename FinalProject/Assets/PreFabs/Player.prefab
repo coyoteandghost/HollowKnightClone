@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c555790102dc1294b8ce313b24ea2699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSlash: {fileID: 7248040056155974325, guid: bbe95cbcccbd8fd4da6a05f9229034eb, type: 3}
   speed: 3.5
   jumpSpeed: 10
   jumpHoldTime: 0.3
