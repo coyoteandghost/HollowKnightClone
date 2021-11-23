@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 332faff156716a34aa3903656aa319d8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - UglyQua
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 718a6531eab0bce43b1ed9329c8beccf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

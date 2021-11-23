@@ -25,23 +25,23 @@ public class PlayerHP : MonoBehaviour
     {
         Debug.Log(health);
 
-        if(health > healthMax)
+        if(health > healthMax) //if health is going to exceed max, just make it max
         {
             health = healthMax;
         }
 
-        for(int i = 0; i < hearts.Length; i++)
+        for(int i = 0; i < hearts.Length; i++) //for the length of the health bar
         {
-            if(i < health)
-            {
-                hearts[i].sprite = fullHeart;
+            if(i < health) //if the place in array is less than the max
+            { 
+                hearts[i].sprite = fullHeart; //show the heart
             } else
             {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].sprite = emptyHeart; //if not, show the empty 
             }
 
 
-            if(i < hpDisplayed)
+            if(i < hpDisplayed) //
             {
                 hearts[i].enabled = true;
             } else
