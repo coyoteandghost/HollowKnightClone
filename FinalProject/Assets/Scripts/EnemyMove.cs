@@ -29,4 +29,16 @@ public class EnemyMove : MonoBehaviour
         float time = Mathf.PingPong(Time.time * speed, 1);
         transform.position = Vector3.Lerp( new Vector3(initObjX, gameObject.transform.position.y , gameObject.transform.position.z) , new Vector3 (platformPosRight, gameObject.transform.position.y , gameObject.transform.position.z), time);
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerHP>().health -= 1;
+        }
+    }
+
+
+
 }
