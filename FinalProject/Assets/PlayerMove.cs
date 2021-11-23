@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
     public float speed;
     public float jumpSpeed;
     public float jumpHoldTime;
+    public float attackReload;
+    float currAttackTime;
     float currJumpTime;
 
     float hmove;
@@ -22,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     {
         CheckMove();
         CheckJump();
+        CheckAttack();
     }
 
     void CheckMove()
@@ -41,7 +44,14 @@ public class PlayerMove : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             if (currJumpTime == 0) currJumpTime += Time.deltaTime;
         }
-            
+    }
+    void CheckAttack()
+    {
+        currAttackTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.X) && currAttackTime > attackReload)
+        {
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
