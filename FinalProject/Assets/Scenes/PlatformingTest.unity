@@ -1550,26 +1550,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
-      propertyPath: fullHeart
-      value: 
-      objectReference: {fileID: 4672858486196030223, guid: 8d0bbe54bfd61b643be0c367b95da476, type: 3}
-    - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
-      propertyPath: healthMax
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
-      propertyPath: emptyHeart
-      value: 
-      objectReference: {fileID: -2851209695999899448, guid: 8d0bbe54bfd61b643be0c367b95da476, type: 3}
-    - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
-      propertyPath: hpDisplayed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
-      propertyPath: hearts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1772047838, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 772826347}
@@ -1603,7 +1583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742526284166761931, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8742526284166761931, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: m_LocalPosition.z

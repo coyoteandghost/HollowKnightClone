@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public GameObject weaponSlash;
+    SpriteRenderer sprite;
 
     public float speed;
     public float jumpSpeed;
@@ -15,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     int dir = 1;
     int vertDir = 1;
     bool verticalSlash = false;
+    bool slashFlip = true;
     GameObject currentAttack;
 
     float hmove;
@@ -23,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,7 @@ public class PlayerMove : MonoBehaviour
             verticalSlash = false;
             if (hmove != 0) dir = (int)Mathf.Sign(hmove);
         }
+        sprite.flipX = dir < 0;
     }
     void CheckJump()
     {
@@ -66,6 +70,7 @@ public class PlayerMove : MonoBehaviour
         currAttackTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.X) && currAttackTime > attackReload)
         {
+            if (currAttackTime > 1f) slashFlip = true;
             Quaternion slashRot;
             Vector3 slashPos;
             if (verticalSlash)
@@ -79,6 +84,10 @@ public class PlayerMove : MonoBehaviour
                 slashPos = new Vector3(transform.position.x + (1.3f * dir), transform.position.y - 0.1f, transform.position.z);
             }
             currentAttack = Instantiate(weaponSlash, slashPos, transform.rotation * slashRot, transform);
+            if (!verticalSlash) currentAttack.GetComponent<SpriteRenderer>().flipX = sprite.flipX;
+            currentAttack.GetComponent<SpriteRenderer>().flipY = slashFlip;
+            if (!slashFlip) slashFlip = true;
+            else slashFlip = false;
             currAttackTime = 0f;
         }
     }
