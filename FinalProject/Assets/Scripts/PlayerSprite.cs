@@ -27,22 +27,24 @@ public class PlayerSprite : MonoBehaviour
         }
 
         //check if jumping or falling
-        if (playerBody.velocity.y != 0)
-        {
+       
             if (playerBody.velocity.y > 0)
             {
                 playerSprite.SetBool("jumping", true);
-            }
-            else if (playerBody.velocity.y < 0)
+            } else
+              {
+                  playerSprite.SetBool("jumping", false);
+               }
+            
+        
+            if (playerBody.velocity.y < 0)
             {
                 playerSprite.SetBool("falling", true);
-            }
-        }
-        else
-        {
-            playerSprite.SetBool("falling", false);
-            playerSprite.SetBool("jumping", false);
-        }
+            } 
+            else
+             {
+                   playerSprite.SetBool("falling", false);  
+             }
 
         //check if attacking
         //ummmm do later lol

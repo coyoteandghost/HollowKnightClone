@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     float camRatio;
 
     Camera mainCam;
-    Vector3 smoothPos; //intermediate position
+    public Vector3 smoothPos; //intermediate position
 
     public float smoothRate; //control how quickly movement occurs
 

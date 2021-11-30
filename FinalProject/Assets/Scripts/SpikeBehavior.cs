@@ -10,6 +10,8 @@ public class SpikeBehavior : MonoBehaviour
     public GameObject teleportSpot;
     public Vector3 safePos;
 
+    public float duration;
+
    // public Vector3 checkpointSafePos;
    // public GameObject player;
 
@@ -21,8 +23,18 @@ public class SpikeBehavior : MonoBehaviour
 
             safePos = new Vector3(teleportSpot.transform.position.x, teleportSpot.transform.position.y, 0);
 
-            collision.gameObject.GetComponent<Transform>().position = safePos; //sends player to safePos
+            FindObjectOfType<freezeFrame>().Stop();
+
+            StartCoroutine(Respawn(duration, collision.gameObject));
         }
+    }
+
+
+    IEnumerator Respawn(float d, GameObject c)
+    {
+        yield return new WaitForSecondsRealtime(duration); //wait one second 
+        Time.timeScale = 1.0f;
+        c.gameObject.GetComponent<Transform>().position = safePos; //sends player to safePos
     }
 
 }
