@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 3846206436157527809}
   - component: {fileID: 1772047836}
   - component: {fileID: 1772047838}
+  - component: {fileID: 8165875618587561924}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSlash: {fileID: 7248040056155974325, guid: bbe95cbcccbd8fd4da6a05f9229034eb, type: 3}
+  playerAnimation: {fileID: 0}
   speed: 3.5
   jumpSpeed: 10
   jumpHoldTime: 0.3
@@ -224,3 +226,18 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 4672858486196030223, guid: 8d0bbe54bfd61b643be0c367b95da476, type: 3}
   emptyHeart: {fileID: -2851209695999899448, guid: 8d0bbe54bfd61b643be0c367b95da476, type: 3}
+--- !u!114 &8165875618587561924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696596022582177719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd9440d24e2df348871474665e3e0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerSprite: {fileID: 0}
+  currentSprite: {fileID: 0}
