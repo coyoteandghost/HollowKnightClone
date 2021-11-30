@@ -11,6 +11,10 @@ public class PlayerMove : MonoBehaviour
     public float jumpSpeed;
     public float jumpHoldTime;
     public float attackReload;
+
+    public AudioClip footstep, jump, land;
+    AudioSource source;
+
     float currAttackTime = 0f;
     float currJumpTime = 0f;
     int dir = 1;
@@ -26,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,7 +53,21 @@ public class PlayerMove : MonoBehaviour
         else
         {
             verticalSlash = false;
-            if (hmove != 0) dir = (int)Mathf.Sign(hmove);
+            if (hmove != 0)
+            {
+                dir = (int)Mathf.Sign(hmove);
+                if (!source.isPlaying && currJumpTime == 0)
+                {
+                    source.clip = footstep;
+                    source.Play();
+                    source.loop = true;
+                }
+            }
+            else
+            {
+                source.Stop();
+                source.loop = false;
+            }
         }
         sprite.flipX = dir < 0;
     }
@@ -62,7 +81,14 @@ public class PlayerMove : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Z))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            if (currJumpTime == 0) currJumpTime += Time.deltaTime;
+            if (currJumpTime == 0)
+            {
+                source.loop = false;
+                source.Stop();
+                source.clip = jump;
+                source.Play();
+                currJumpTime += Time.deltaTime;
+            }
         }
     }
     void CheckAttack()
@@ -94,7 +120,14 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.position.y < transform.position.y) currJumpTime = 0;
+        if (collision.transform.position.y < transform.position.y)
+        {
+            currJumpTime = 0;
+            source.Stop();
+            source.loop = false;
+            source.clip = land;
+            source.Play();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
