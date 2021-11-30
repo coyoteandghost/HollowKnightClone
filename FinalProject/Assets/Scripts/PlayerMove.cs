@@ -96,4 +96,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.transform.position.y < transform.position.y) currJumpTime = 0;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("CameraControl"))
+        {
+            Camera.main.GetComponent<CameraFollow>().worldBounds = (BoxCollider2D)collision;
+            Camera.main.SendMessage("SetBounds");
+        }
+    }
 }

@@ -22,21 +22,20 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCam = gameObject.GetComponent<Camera>();
+        SetBounds();
+    }
+
+    // Update is called once per frame
+    void SetBounds()
+    {
         XMin = worldBounds.bounds.min.x;
         XMax = worldBounds.bounds.max.x;
         YMin = worldBounds.bounds.min.y;
         YMax = worldBounds.bounds.max.y;
 
-        mainCam = gameObject.GetComponent<Camera>();
-
         camSize = mainCam.orthographicSize; //gets size of camera
-        camRatio = (XMax + camSize) / 8.0f; // creates ratio of cameras width to overall bounds
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        camRatio = (camSize * 9f) / 16.0f; // creates ratio of cameras width to overall bounds
     }
 
     private void FixedUpdate()
