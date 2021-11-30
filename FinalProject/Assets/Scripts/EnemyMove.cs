@@ -8,6 +8,7 @@ public class EnemyMove : MonoBehaviour
 
     public GameObject platform;
 
+
     int enemyHP = 3;
 
     float platformPosRight;
@@ -51,6 +52,7 @@ public class EnemyMove : MonoBehaviour
         if(collision.gameObject.tag == "Player") // if collide with player subtract its hp
         {
             collision.gameObject.GetComponent<PlayerHP>().health -= 1;
+            FindObjectOfType<freezeFrame>().Stop();
         }
     }
 
@@ -60,6 +62,7 @@ public class EnemyMove : MonoBehaviour
         if (collision.gameObject.tag == "Slash")
         {
             enemyHP -= 1;
+            FindObjectOfType<freezeFrame>().Stop();
         }
     }
 
