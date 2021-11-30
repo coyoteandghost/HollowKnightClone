@@ -8,10 +8,16 @@ public class PlayerSprite : MonoBehaviour
     public Animator playerSprite;
     public SpriteRenderer currentSprite;
 
+    public ParticleSystem walkTrailLeft;
+    public ParticleSystem walkTrailRight;
+
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
         CheckVelocity();
+        CheckMove();
 
     }
 
@@ -50,15 +56,58 @@ public class PlayerSprite : MonoBehaviour
         //ummmm do later lol
 
 
+
         //determine left or right facing
         if (playerBody.velocity.x > 0)
         {
             currentSprite.flipX = false;
+            
         }
-        else if(playerBody.velocity.x < 0)
+        
+        
+        if(playerBody.velocity.x < 0)
         {
             currentSprite.flipX = true;
-        }
+        } 
+       
 
     }
+
+
+
+    bool isPlaying;
+
+    void CheckMove()
+    {
+
+       if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying)
+        {
+            walkTrailLeft.Play();
+            isPlaying = true;
+        }
+        else
+        {
+            walkTrailLeft.Stop();
+            isPlaying = false;
+        }
+
+
+
+        if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying)
+        {
+            walkTrailRight.Play();
+            isPlaying = true;
+        }
+        else
+        {
+            walkTrailRight.Stop();
+            isPlaying = false;
+        }
+
+
+    }
+
+
+
+
 }

@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     public GameObject weaponSlash;
     SpriteRenderer sprite;
-
+    
     public float speed;
     public float jumpSpeed;
     public float jumpHoldTime;

@@ -2,79 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+
+
+namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
 {
-    public float speed = 1.19f;
-
-    public GameObject platform;
-
-
-    int enemyHP = 3;
-
-    float platformPosRight;
-    float platformWidth;
-    float initObjX;
-
-    public float platformAdjust;
-
-    void Start()
+    public class EnemyMove : MonoBehaviour
     {
 
-        initObjX = gameObject.transform.position.x; //get the starting pos
+        public float speed = 1.19f;
 
-        platformWidth = platform.GetComponent<SpriteRenderer>().bounds.size.x; //get width of platform its on
-        platformPosRight = initObjX + (platformWidth/platformAdjust); //add width of platform to start pos
-    }
+        public GameObject platform;
 
-    void Update()
-    {
-        Debug.Log(enemyHP);
-        enemyDie();
+        public ParticleSystem slashSys;
 
-        //PingPong between 0 and 1
-        float time = Mathf.PingPong(Time.time * speed, 1); 
-            if(time < 0.01)
+        int enemyHP = 3;
+
+        float platformPosRight;
+        float platformWidth;
+        float initObjX;
+
+        public float platformAdjust;
+
+        void Start()
+        {          
+            initObjX = gameObject.transform.position.x; //get the starting pos
+
+            platformWidth = platform.GetComponent<SpriteRenderer>().bounds.size.x; //get width of platform its on
+            platformPosRight = initObjX + (platformWidth / platformAdjust); //add width of platform to start pos
+        }
+
+        void Update()
+        {
+            Debug.Log(enemyHP);
+            enemyDie();
+
+            //PingPong between 0 and 1
+            float time = Mathf.PingPong(Time.time * speed, 1);
+            if (time < 0.01)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            } 
-            else if(time > 0.99)
+            }
+            else if (time > 0.99)
             {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
 
 
-        transform.position = Vector3.Lerp( new Vector3(initObjX, gameObject.transform.position.y , gameObject.transform.position.z) , new Vector3 (platformPosRight, gameObject.transform.position.y , gameObject.transform.position.z), time);
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player") // if collide with player subtract its hp
-        {
-            collision.gameObject.GetComponent<PlayerHP>().health -= 1;
-            FindObjectOfType<freezeFrame>().Stop();
+            transform.position = Vector3.Lerp(new Vector3(initObjX, gameObject.transform.position.y, gameObject.transform.position.z), new Vector3(platformPosRight, gameObject.transform.position.y, gameObject.transform.position.z), time);
         }
-    }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Slash")
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            enemyHP -= 1;
-            FindObjectOfType<freezeFrame>().Stop();
+            if (collision.gameObject.tag == "Player") // if collide with player subtract its hp
+            {
+                collision.gameObject.GetComponent<PlayerHP>().health -= 1;
+                FindObjectOfType<freezeFrame>().Stop();
+            }
         }
-    }
 
 
-    void enemyDie()
-    {
-        if(enemyHP == 0)
+
+        [SerializeField] SimpleFlash flashEffect;
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            Destroy(gameObject);
+            if (collision.gameObject.tag == "Slash")
+            {
+                flashEffect.Flash();
+                slashSys.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, 0);
+                slashSys.Play();
+                FindObjectOfType<freezeFrame>().Stop();
+                enemyHP -= 1;
+            }
         }
-    }
 
+
+        void enemyDie()
+        {
+            if (enemyHP < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+
+
+    }
 
 
 }

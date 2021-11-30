@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7895819065713547726}
   - component: {fileID: 1214292986082068403}
   - component: {fileID: 6666425312647445418}
+  - component: {fileID: 7545534898555458145}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 980c1d78832f95d4a9aae37f48613566, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,18 +131,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01954335, y: -0.14983252}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.615, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6384169, y: 0.70033497}
   m_EdgeRadius: 0
 --- !u!50 &7895819065713547726
 Rigidbody2D:
@@ -179,6 +180,7 @@ MonoBehaviour:
   speed: 1.19
   platform: {fileID: 0}
   platformAdjust: 0
+  flashEffect: {fileID: 7545534898555458145}
 --- !u!95 &6666425312647445418
 Animator:
   serializedVersion: 3
@@ -198,3 +200,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7545534898555458145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180829976504245310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fea087d23e91a418d87f70e7e64e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 7c62b76e35e3fc040b65afd4a95d4865, type: 2}
+  duration: 0.08
