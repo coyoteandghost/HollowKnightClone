@@ -15,15 +15,10 @@ public class PlayerHP : MonoBehaviour
     public Sprite emptyHeart;
 
 
-    private void Start()
-    {
-       
-    }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
 
         if(health > healthMax) //if health is going to exceed max, just make it max
         {

@@ -27,8 +27,21 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(enemyHP);
+        enemyDie();
+
         //PingPong between 0 and 1
         float time = Mathf.PingPong(Time.time * speed, 1); 
+            if(time < 0.01)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            } 
+            else if(time > 0.99)
+            {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+
         transform.position = Vector3.Lerp( new Vector3(initObjX, gameObject.transform.position.y , gameObject.transform.position.z) , new Vector3 (platformPosRight, gameObject.transform.position.y , gameObject.transform.position.z), time);
     }
 
@@ -39,8 +52,12 @@ public class EnemyMove : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerHP>().health -= 1;
         }
+    }
 
-        if(collision.gameObject.tag == "Slash")
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Slash")
         {
             enemyHP -= 1;
         }
