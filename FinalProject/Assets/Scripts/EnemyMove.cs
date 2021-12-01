@@ -14,6 +14,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         public GameObject platform;
 
         public ParticleSystem slashSys;
+        public ParticleSystem bloodSys;
 
         int enemyHP = 3;
 
@@ -81,6 +82,8 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         {
             if (enemyHP < 0)
             {
+                bloodSys.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                bloodSys.Play();
                 Destroy(gameObject);
             }
         }

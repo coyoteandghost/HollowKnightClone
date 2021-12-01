@@ -11,6 +11,8 @@ public class PlayerSprite : MonoBehaviour
     public ParticleSystem walkTrailLeft;
     public ParticleSystem walkTrailRight;
 
+    bool touchingFloor;
+
 
 
     // Update is called once per frame
@@ -80,7 +82,7 @@ public class PlayerSprite : MonoBehaviour
     void CheckMove()
     {
 
-       if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying)
+       if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying && touchingFloor)
         {
             walkTrailLeft.Play();
             isPlaying = true;
@@ -93,7 +95,7 @@ public class PlayerSprite : MonoBehaviour
 
 
 
-        if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying)
+        if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying && touchingFloor)
         {
             walkTrailRight.Play();
             isPlaying = true;
@@ -105,6 +107,19 @@ public class PlayerSprite : MonoBehaviour
         }
 
 
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Floor")
+        {
+            touchingFloor = true;
+        } else
+        {
+            touchingFloor = false;
+        }
     }
 
 
