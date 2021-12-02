@@ -11,9 +11,9 @@ public class PlayerSprite : MonoBehaviour
     public ParticleSystem walkTrailLeft;
     public ParticleSystem walkTrailRight;
 
-    bool touchingFloor;
+    public bool touchingFloor;
 
-
+    public float pd; //duration
 
     // Update is called once per frame
     void FixedUpdate()
@@ -82,10 +82,10 @@ public class PlayerSprite : MonoBehaviour
     void CheckMove()
     {
 
+
        if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying && touchingFloor)
         {
-            walkTrailLeft.Play();
-            isPlaying = true;
+            StartCoroutine(DirtKick(pd, walkTrailLeft));
         }
         else
         {
@@ -97,8 +97,7 @@ public class PlayerSprite : MonoBehaviour
 
         if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying && touchingFloor)
         {
-            walkTrailRight.Play();
-            isPlaying = true;
+            StartCoroutine(DirtKick(pd, walkTrailRight));
         }
         else
         {
@@ -111,15 +110,22 @@ public class PlayerSprite : MonoBehaviour
 
 
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Floor")
         {
             touchingFloor = true;
-        } else
-        {
-            touchingFloor = false;
-        }
+        } 
+    }
+
+
+    IEnumerator DirtKick(float wait, ParticleSystem dirtkick)
+    {
+        yield return new WaitForSecondsRealtime(wait);
+        Time.timeScale = 1.0f;
+        dirtkick.Play();
+        isPlaying = true;
     }
 
 

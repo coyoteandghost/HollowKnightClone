@@ -8,6 +8,7 @@ public class PlayerHP : MonoBehaviour
 
     public int health;
     public int healthMax;
+    public int healthMin;
     public int hpDisplayed;
 
     public Image[] hearts;
@@ -19,27 +20,38 @@ public class PlayerHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DeathCheck();
+        UIHearts();
+    }
 
-        if(health > healthMax) //if health is going to exceed max, just make it max
+
+
+
+
+    void UIHearts()
+    {
+        if (health > healthMax) //if health is going to exceed max, just make it max
         {
             health = healthMax;
         }
 
-        for(int i = 0; i < hearts.Length; i++) //for the length of the health bar
+        for (int i = 0; i < hearts.Length; i++) //for the length of the health bar
         {
-            if(i < health) //if the place in array is less than the max
-            { 
+            if (i < health) //if the place in array is less than the max
+            {
                 hearts[i].sprite = fullHeart; //show the heart
-            } else
+            }
+            else
             {
                 hearts[i].sprite = emptyHeart; //if not, show the empty 
             }
 
 
-            if(i < hpDisplayed) //
+            if (i < hpDisplayed) //
             {
                 hearts[i].enabled = true;
-            } else
+            }
+            else
             {
                 hearts[i].enabled = false;
             }
@@ -47,5 +59,23 @@ public class PlayerHP : MonoBehaviour
 
     }
 
-  
+
+    void DeathCheck()
+    {
+        {
+            if (health < healthMin)
+            {
+                gameObject.transform.position = new Vector3(0, 0, 0);
+            }
+        }
+    }
+
 }
+
+
+        
+     
+        
+
+
+    

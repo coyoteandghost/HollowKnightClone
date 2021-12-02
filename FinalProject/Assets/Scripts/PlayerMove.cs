@@ -76,7 +76,11 @@ public class PlayerMove : MonoBehaviour
         if (currJumpTime != 0)
         {
             currJumpTime += Time.deltaTime;
-            if (Input.GetKey(KeyCode.Z) && currJumpTime < jumpHoldTime) rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            if (Input.GetKey(KeyCode.Z) && currJumpTime < jumpHoldTime)
+            {
+                gameObject.GetComponent<PlayerSprite>().touchingFloor = false;
+                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
