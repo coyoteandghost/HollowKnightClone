@@ -16,11 +16,11 @@ public class PlayerSprite : MonoBehaviour
     public float pd; //duration
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         CheckVelocity();
         CheckMove();
-
+        CheckIfAttack();
     }
 
     void CheckVelocity()
@@ -128,7 +128,13 @@ public class PlayerSprite : MonoBehaviour
         isPlaying = true;
     }
 
-
+    void CheckIfAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.X) && playerSprite.GetBool("attacking") == false)
+        {
+            playerSprite.SetBool("attacking", true);
+        }
+    }
 
 
 }

@@ -63,9 +63,10 @@ public class PlayerHP : MonoBehaviour
     void DeathCheck()
     {
         {
-            if (health < healthMin)
+            if (health == healthMin)
             {
                 gameObject.transform.position = new Vector3(0, 0, 0);
+                health = healthMax;
             }
         }
     }
