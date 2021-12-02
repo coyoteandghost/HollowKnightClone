@@ -14,6 +14,7 @@ public class SlashBehavior : MonoBehaviour
         if (time >= slashTime)
         {
             GameObject.FindObjectOfType<PlayerSprite>().playerSprite.SetBool("attacking", false);
+            GameObject.FindObjectOfType<PlayerSprite>().playerSprite.SetBool("up", false);
             Destroy(gameObject);
         }
     }

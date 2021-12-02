@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     float currJumpTime = 0f;
     int dir = 1;
     int vertDir = 1;
-    bool verticalSlash = false;
+    public bool verticalSlash = false;
     bool slashFlip = true;
     GameObject currentAttack;
 

@@ -217,7 +217,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.57
+      scalar: 0.9
       minScalar: 0.27
       maxCurve:
         serializedVersion: 2
@@ -270,7 +270,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.16
+      scalar: 6.53
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5018,7 +5018,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
+  m_Offset: {x: 0.012417674, y: -0.15044439}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5029,7 +5029,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 2.4}
+  m_Size: {x: 0.50263417, y: 2.1876996}
   m_EdgeRadius: 0
 --- !u!50 &3846206436157527809
 Rigidbody2D:
@@ -5072,6 +5072,7 @@ MonoBehaviour:
   footstep: {fileID: 8300000, guid: 525e032312c4d6a4da59dbe2473c7b61, type: 3}
   jump: {fileID: 8300000, guid: 0593f2f91aa4cef469e07527d3c229e0, type: 3}
   land: {fileID: 8300000, guid: a6d7845768e24c94caac089065feaf3b, type: 3}
+  verticalSlash: 0
 --- !u!114 &1772047838
 MonoBehaviour:
   m_ObjectHideFlags: 0
