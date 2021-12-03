@@ -15,6 +15,7 @@ public class SlashBehavior : MonoBehaviour
         {
             GameObject.FindObjectOfType<PlayerSprite>().playerSprite.SetBool("attacking", false);
             GameObject.FindObjectOfType<PlayerSprite>().playerSprite.SetBool("up", false);
+            GameObject.FindObjectOfType<PlayerSprite>().playerSprite.SetBool("down", false);
             Destroy(gameObject);
         }
     }
