@@ -133,7 +133,6 @@ public class PlayerSprite : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && playerSprite.GetBool("attacking") == false && Input.GetKey(KeyCode.UpArrow))
         {
             playerSprite.SetBool("up", true);
-
         } 
         else if (Input.GetKeyDown(KeyCode.X) && playerSprite.GetBool("attacking") == false && Input.GetKey(KeyCode.DownArrow))
         {
