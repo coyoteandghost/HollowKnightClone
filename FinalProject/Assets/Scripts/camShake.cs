@@ -39,7 +39,6 @@ public class camShake : MonoBehaviour
                 );
 
             elapsed += Time.deltaTime; //add time until it exceeds duration
-            Debug.Log("elapsed =" + elapsed);
 
             yield return null;
         }

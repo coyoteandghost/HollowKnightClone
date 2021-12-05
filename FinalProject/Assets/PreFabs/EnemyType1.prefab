@@ -5159,11 +5159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacf8df636562a64a85c92f052d5511d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.19
+  speed: 2
+  dir: 1
   platform: {fileID: 0}
   slashSys: {fileID: 0}
   bloodSys: {fileID: 6655378757429631210}
-  platformAdjust: 0
+  playerKnockback: 40
+  playerAtkKnockback: 10
   flashEffect: {fileID: 7545534898555458145}
 --- !u!95 &6666425312647445418
 Animator:

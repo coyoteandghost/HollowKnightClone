@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     public float jumpSpeed;
     public float jumpHoldTime;
     public float attackReload;
+    public float knockbackReturn = 0.996f;
 
     public AudioClip footstep, jump, land;
     AudioSource source;
@@ -22,6 +23,8 @@ public class PlayerMove : MonoBehaviour
     public bool verticalSlash = false;
     bool slashFlip = true;
     GameObject currentAttack;
+
+    Vector2 knockbackDirection = Vector2.zero;
 
     float hmove;
     Rigidbody2D rb;
@@ -39,10 +42,18 @@ public class PlayerMove : MonoBehaviour
         CheckMove();
         CheckJump();
         CheckAttack();
+        if (knockbackDirection != Vector2.zero)
+        {
+            knockbackDirection *= Mathf.Pow(knockbackReturn, Time.deltaTime);
+            Debug.Log(knockbackDirection);
+        }
+        if (knockbackDirection.sqrMagnitude <= 0.05f) knockbackDirection = Vector2.zero;
+        rb.velocity = rb.velocity + knockbackDirection;
     }
 
     void CheckMove()
     {
+
         hmove = Input.GetAxis("Horizontal") * speed;
         rb.velocity = new Vector2(hmove, rb.velocity.y);
         if (Input.GetAxisRaw("Vertical") != 0)
@@ -120,6 +131,12 @@ public class PlayerMove : MonoBehaviour
             else slashFlip = false;
             currAttackTime = 0f;
         }
+    }
+
+    public void ApplyKnockback(float amount, bool vertical)
+    {
+        if (vertical) knockbackDirection = new Vector2(0f, amount);
+        else knockbackDirection = new Vector2(amount, 0f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

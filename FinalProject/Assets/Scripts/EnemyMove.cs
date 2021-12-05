@@ -26,7 +26,8 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         float platformMin;
         float initObjX;
 
-        public float platformAdjust;
+        public float playerKnockback;
+        public float playerAtkKnockback;
 
         void Start()
         {          
@@ -34,6 +35,8 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
 
             sprite = GetComponent<SpriteRenderer>();
             rbody = GetComponent<Rigidbody2D>();
+
+            if (dir == -1) sprite.flipX = true;
 
             platformMax = platform.GetComponent<SpriteRenderer>().bounds.max.x;
             platformMin = platform.GetComponent<SpriteRenderer>().bounds.min.x;
@@ -67,6 +70,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             if (collision.gameObject.tag == "Player") // if collide with player subtract its hp
             {
                 collision.gameObject.GetComponent<PlayerHP>().health -= 1;
+                FindObjectOfType<PlayerMove>().ApplyKnockback(playerKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
                 FindObjectOfType<freezeFrame>().Stop();
             }
         }
@@ -84,6 +88,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 FindObjectOfType<freezeFrame>().Stop();
                 enemyHP--;
                 enemyDie();
+                FindObjectOfType<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
             }
         }
 
