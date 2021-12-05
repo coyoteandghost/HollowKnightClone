@@ -59,14 +59,14 @@ public class PlayerMove : MonoBehaviour
                 if (!source.isPlaying && currJumpTime == 0)
                 {
                     source.clip = footstep;
-                    source.Play();
-                    source.loop = true;
+                    //source.Play();
+                    //source.loop = true;
                 }
             }
             else
             {
-                source.Stop();
-                source.loop = false;
+                //source.Stop();
+                //source.loop = false;
             }
         }
         sprite.flipX = dir < 0;
@@ -88,9 +88,9 @@ public class PlayerMove : MonoBehaviour
             if (currJumpTime == 0)
             {
                 source.loop = false;
-                source.Stop();
+                //source.Stop();
                 source.clip = jump;
-                source.Play();
+                //source.Play();
                 currJumpTime += Time.deltaTime;
             }
         }
@@ -127,10 +127,10 @@ public class PlayerMove : MonoBehaviour
         if (collision.transform.position.y < transform.position.y)
         {
             currJumpTime = 0;
-            source.Stop();
+            //source.Stop();
             source.loop = false;
             source.clip = land;
-            source.Play();
+            //source.Play();
         }
     }
 

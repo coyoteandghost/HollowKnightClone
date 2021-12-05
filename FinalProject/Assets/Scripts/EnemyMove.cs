@@ -9,17 +9,21 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
     public class EnemyMove : MonoBehaviour
     {
 
-        public float speed = 1.19f;
+        public float speed = 2f;
+        public int dir = 1;
 
         public GameObject platform;
 
         public ParticleSystem slashSys;
         public ParticleSystem bloodSys;
 
+        SpriteRenderer sprite;
+        Rigidbody2D rbody;
+
         int enemyHP = 3;
 
-        float platformPosRight;
-        float platformWidth;
+        float platformMax;
+        float platformMin;
         float initObjX;
 
         public float platformAdjust;
@@ -28,28 +32,33 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         {          
             initObjX = gameObject.transform.position.x; //get the starting pos
 
-            platformWidth = platform.GetComponent<SpriteRenderer>().bounds.size.x; //get width of platform its on
-            platformPosRight = initObjX + (platformWidth / platformAdjust); //add width of platform to start pos
+            sprite = GetComponent<SpriteRenderer>();
+            rbody = GetComponent<Rigidbody2D>();
+
+            platformMax = platform.GetComponent<SpriteRenderer>().bounds.max.x;
+            platformMin = platform.GetComponent<SpriteRenderer>().bounds.min.x;
+            Debug.Log(platformMin);
         }
 
         void Update()
         {
-            Debug.Log(enemyHP);
-            enemyDie();
+            if (GetComponent<BoxCollider2D>().bounds.min.x <= platformMin || GetComponent<BoxCollider2D>().bounds.max.x >= platformMax) SwitchDirection();
 
-            //PingPong between 0 and 1
-            float time = Mathf.PingPong(Time.time * speed, 1);
-            if (time < 0.01)
+            rbody.velocity = new Vector3(speed * dir, rbody.velocity.y);
+        }
+
+        void SwitchDirection()
+        {
+            if (dir == 1)
             {
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                dir = -1;
+                sprite.flipX = true;
             }
-            else if (time > 0.99)
+            else
             {
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                dir = 1;
+                sprite.flipX = false;
             }
-
-
-            transform.position = Vector3.Lerp(new Vector3(initObjX, gameObject.transform.position.y, gameObject.transform.position.z), new Vector3(platformPosRight, gameObject.transform.position.y, gameObject.transform.position.z), time);
         }
 
 
@@ -73,14 +82,15 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 slashSys.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, 0);
                 slashSys.Play();
                 FindObjectOfType<freezeFrame>().Stop();
-                enemyHP -= 1;
+                enemyHP--;
+                enemyDie();
             }
         }
 
 
         void enemyDie()
         {
-            if (enemyHP < 0)
+            if (enemyHP <= 0)
             {
                 bloodSys.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                 bloodSys.Play();
