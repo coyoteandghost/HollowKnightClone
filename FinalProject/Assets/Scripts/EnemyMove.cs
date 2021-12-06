@@ -26,8 +26,12 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         float platformMin;
         float initObjX;
 
-        public float playerKnockback;
+        public float hitKnockback;
+        public float playerKnockback = 40f;
         public float playerAtkKnockback;
+        public float knockbackReturn;
+
+        Vector2 knockbackDirection = Vector2.zero;
 
         void Start()
         {          
@@ -40,14 +44,26 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
 
             platformMax = platform.GetComponent<SpriteRenderer>().bounds.max.x;
             platformMin = platform.GetComponent<SpriteRenderer>().bounds.min.x;
-            Debug.Log(platformMin);
         }
 
         void Update()
         {
-            if (GetComponent<BoxCollider2D>().bounds.min.x <= platformMin || GetComponent<BoxCollider2D>().bounds.max.x >= platformMax) SwitchDirection();
+            if (GetComponent<BoxCollider2D>().bounds.min.x <= platformMin)
+            {
+                transform.Translate(platformMin - GetComponent<BoxCollider2D>().bounds.min.x, 0f, 0f);
+                SwitchDirection();
+            }
+            else if (GetComponent<BoxCollider2D>().bounds.max.x >= platformMax)
+            {
+                transform.Translate(platformMax - GetComponent<BoxCollider2D>().bounds.max.x, 0f, 0f);
+                SwitchDirection();
+            }
 
             rbody.velocity = new Vector3(speed * dir, rbody.velocity.y);
+
+            if (knockbackDirection != Vector2.zero) knockbackDirection *= Mathf.Pow(knockbackReturn, Time.deltaTime);
+            if (knockbackDirection.sqrMagnitude <= 0.05f) knockbackDirection = Vector2.zero;
+            rbody.velocity = rbody.velocity + knockbackDirection;
         }
 
         void SwitchDirection()
@@ -64,6 +80,11 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             }
         }
 
+        public void ApplyKnockback(float amount, bool vertical)
+        {
+            if (vertical) knockbackDirection = new Vector2(0f, amount);
+            else knockbackDirection = new Vector2(amount, 0f);
+        }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -88,6 +109,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 FindObjectOfType<freezeFrame>().Stop();
                 enemyHP--;
                 enemyDie();
+                ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x), false);
                 FindObjectOfType<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
             }
         }
@@ -102,10 +124,5 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 Destroy(gameObject);
             }
         }
-
-
-
     }
-
-
 }

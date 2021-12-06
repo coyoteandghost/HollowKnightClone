@@ -42,11 +42,7 @@ public class PlayerMove : MonoBehaviour
         CheckMove();
         CheckJump();
         CheckAttack();
-        if (knockbackDirection != Vector2.zero)
-        {
-            knockbackDirection *= Mathf.Pow(knockbackReturn, Time.deltaTime);
-            Debug.Log(knockbackDirection);
-        }
+        if (knockbackDirection != Vector2.zero) knockbackDirection *= Mathf.Pow(knockbackReturn, Time.deltaTime);
         if (knockbackDirection.sqrMagnitude <= 0.05f) knockbackDirection = Vector2.zero;
         rb.velocity = rb.velocity + knockbackDirection;
     }
