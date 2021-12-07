@@ -181,8 +181,20 @@ public class PlayerMove : MonoBehaviour
             Camera.main.GetComponent<CameraFollow>().worldBounds = (BoxCollider2D)collision;
             Camera.main.SendMessage("SetBounds");
         }
-        else if (collision.gameObject.name == "Music1") soundHandler.StartMusic();
-        else if (collision.gameObject.name == "Music2") soundHandler.StartCoroutine("FadeIn", 1);
-        else if (collision.gameObject.name == "Music2") soundHandler.StartCoroutine("FadeIn", 2);
+        else if (collision.gameObject.name == "Music1")
+        {
+            soundHandler.StartMusic();
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.name == "Music2")
+        {
+            soundHandler.StartCoroutine("FadeIn", 1);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.name == "Music3")
+        {
+            soundHandler.StartCoroutine("FadeIn", 2);
+            Destroy(collision.gameObject);
+        }
     }
 }
