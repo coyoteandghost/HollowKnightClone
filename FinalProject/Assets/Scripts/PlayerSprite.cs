@@ -7,13 +7,14 @@ public class PlayerSprite : MonoBehaviour
     public Rigidbody2D playerBody;
     public Animator playerSprite;
     public SpriteRenderer currentSprite;
+    public ParticleSystem floorHit;
 
    // public ParticleSystem walkTrailLeft;
    // public ParticleSystem walkTrailRight;
 
     public bool touchingFloor;
 
-    public float pd; //duration
+   // public float pd; //duration
 
     // Update is called once per frame
     void Update()
@@ -115,6 +116,7 @@ public class PlayerSprite : MonoBehaviour
     {
         if(collision.gameObject.tag == "Floor")
         {
+            floorHit.Play();
             touchingFloor = true;
         } 
     }

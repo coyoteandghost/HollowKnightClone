@@ -14,14 +14,14 @@ public class callWalkingPart : MonoBehaviour
         if(GetComponent<SpriteRenderer>().flipX == true)
         {
             currentParticle = left;
-        } 
-        
+        } else
         if (GetComponent<SpriteRenderer>().flipX == false)
         {
             currentParticle = right;
         }
 
         currentParticle.Play();
+        Debug.Log("burst");
     }
 
   
