@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4112536071800312600}
   - component: {fileID: 504782365482691478}
   - component: {fileID: 1674615148623477174}
-  - component: {fileID: 2750888489907755986}
   - component: {fileID: 1304311074347708953}
   - component: {fileID: 3887517077814926102}
+  - component: {fileID: 4377495697186504347}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 980c1d78832f95d4a9aae37f48613566, type: 3}
-  m_Color: {r: 0.74741656, g: 0.6745283, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 88424f52d8476e542b29e1b78d728578, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,18 +106,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01954335, y: -0.14983252}
+  m_Offset: {x: -0.16188812, y: 0.17958927}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.615, y: 1.5}
+    oldSize: {x: 3.4866667, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6384169, y: 0.70033497}
+  m_Size: {x: 1.5977478, y: 1.0012875}
   m_EdgeRadius: 0
 --- !u!50 &1674615148623477174
 Rigidbody2D:
@@ -140,25 +140,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &2750888489907755986
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803573146275511366}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 86cbc3b7b21f2f74a934ad797222c0bb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1304311074347708953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +175,25 @@ MonoBehaviour:
   playerAtkKnockback: 10
   knockbackReturn: 0.00002
   flashEffect: {fileID: 1304311074347708953}
+--- !u!95 &4377495697186504347
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803573146275511366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a65feb274b63b254c8c458768c0bd76f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1916102891550521478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5104,7 +5104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2570475259228160647}
   - component: {fileID: 9076608563111082989}
-  - component: {fileID: 535606684460136634}
+  - component: {fileID: 1598143397086630746}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -5170,9 +5170,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 980c1d78832f95d4a9aae37f48613566, type: 3}
-  m_Color: {r: 0.3490566, g: 0.12019401, b: 0.12019401, a: 0.54509807}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 88424f52d8476e542b29e1b78d728578, type: 3}
+  m_Color: {r: 0.34901962, g: 0.12156863, b: 0.12156863, a: 0.54509807}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5182,7 +5182,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &535606684460136634
+--- !u!95 &1598143397086630746
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -5192,7 +5192,7 @@ Animator:
   m_GameObject: {fileID: 7463765577176183814}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 86cbc3b7b21f2f74a934ad797222c0bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: a65feb274b63b254c8c458768c0bd76f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

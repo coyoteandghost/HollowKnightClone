@@ -5165,7 +5165,6 @@ MonoBehaviour:
   currentSprite: {fileID: 6470416252846702440}
   floorHit: {fileID: 7669791635367535195}
   touchingFloor: 0
-  pd: 0
 --- !u!82 &306722451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5322,6 +5321,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 38.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
       propertyPath: startDelay.scalar
       value: 0
       objectReference: {fileID: 0}
@@ -5331,7 +5334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 0.47
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
       propertyPath: ShapeModule.radiusThickness
