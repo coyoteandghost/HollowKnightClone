@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4459867110624603711}
   - component: {fileID: 6470416252846702440}
   - component: {fileID: 6527334213320754887}
+  - component: {fileID: 7198530547134999181}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -102,6 +103,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7198530547134999181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810415896231773166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f42b0892534f24f95534b42717a6a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2810415896231773166}
+  left: {fileID: 4588178286345089209}
+  right: {fileID: 5727021240985661201}
 --- !u!1 &4112510886518621072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5099,9 +5115,6 @@ MonoBehaviour:
   speed: 9
   attackReload: 0.4
   knockbackReturn: 0.8
-  footstep: {fileID: 8300000, guid: 525e032312c4d6a4da59dbe2473c7b61, type: 3}
-  jump: {fileID: 8300000, guid: 0593f2f91aa4cef469e07527d3c229e0, type: 3}
-  land: {fileID: 8300000, guid: a6d7845768e24c94caac089065feaf3b, type: 3}
   verticalSlash: 0
   feetPos: {fileID: 6540992644336715782}
   checkRadius: 0.3
@@ -5149,8 +5162,6 @@ MonoBehaviour:
   playerBody: {fileID: 3846206436157527809}
   playerSprite: {fileID: 6527334213320754887}
   currentSprite: {fileID: 6470416252846702440}
-  walkTrailLeft: {fileID: 4588178286345089209}
-  walkTrailRight: {fileID: 5727021240985661201}
   touchingFloor: 0
   pd: 0
 --- !u!82 &306722451
@@ -5304,6 +5315,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: walktrailLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649920056672172406, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd87baf7cb8807040ada5cc52637523e, type: 3}
 --- !u!4 &6067631987640163107 stripped
@@ -5366,6 +5389,22 @@ PrefabInstance:
     - target: {fileID: 181577698763096606, guid: d0c1c1529002167468638f8454145a2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842935946873451858, guid: d0c1c1529002167468638f8454145a2a, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842935946873451858, guid: d0c1c1529002167468638f8454145a2a, type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842935946873451858, guid: d0c1c1529002167468638f8454145a2a, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842935946873451858, guid: d0c1c1529002167468638f8454145a2a, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8520715646306379045, guid: d0c1c1529002167468638f8454145a2a, type: 3}
       propertyPath: m_Name

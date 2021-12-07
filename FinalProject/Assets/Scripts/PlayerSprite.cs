@@ -8,8 +8,8 @@ public class PlayerSprite : MonoBehaviour
     public Animator playerSprite;
     public SpriteRenderer currentSprite;
 
-    public ParticleSystem walkTrailLeft;
-    public ParticleSystem walkTrailRight;
+   // public ParticleSystem walkTrailLeft;
+   // public ParticleSystem walkTrailRight;
 
     public bool touchingFloor;
 
@@ -19,7 +19,7 @@ public class PlayerSprite : MonoBehaviour
     void Update()
     {
         CheckVelocity();
-        CheckMove();
+       // CheckMove();
         CheckIfAttack();
     }
 
@@ -77,36 +77,36 @@ public class PlayerSprite : MonoBehaviour
 
 
 
-    bool isPlaying;
+    //bool isPlaying;
 
-    void CheckMove()
-    {
-
-
-       if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying && touchingFloor)
-        {
-            StartCoroutine(DirtKick(pd, walkTrailLeft));
-        }
-        else
-        {
-            walkTrailLeft.Stop();
-            isPlaying = false;
-        }
+    //void CheckMove()
+    //{
 
 
+    //   if(playerSprite.GetBool("walking") == true && currentSprite.flipX == true && !isPlaying && touchingFloor)
+    //    {
+    //        StartCoroutine(DirtKick(pd, walkTrailLeft));
+    //    }
+    //    else
+    //    {
+    //        walkTrailLeft.Stop();
+    //        isPlaying = false;
+    //    }
 
-        if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying && touchingFloor)
-        {
-            StartCoroutine(DirtKick(pd, walkTrailRight));
-        }
-        else
-        {
-            walkTrailRight.Stop();
-            isPlaying = false;
-        }
 
 
-    }
+    //    if (playerSprite.GetBool("walking") == true && currentSprite.flipX == false && !isPlaying && touchingFloor)
+    //    {
+    //        StartCoroutine(DirtKick(pd, walkTrailRight));
+    //    }
+    //    else
+    //    {
+    //        walkTrailRight.Stop();
+    //        isPlaying = false;
+    //    }
+
+
+    //}
 
 
 
@@ -120,13 +120,13 @@ public class PlayerSprite : MonoBehaviour
     }
 
 
-    IEnumerator DirtKick(float wait, ParticleSystem dirtkick)
-    {
-        yield return new WaitForSecondsRealtime(wait);
-        Time.timeScale = 1.0f;
-        dirtkick.Play();
-        isPlaying = true;
-    }
+    //IEnumerator DirtKick(float wait, ParticleSystem dirtkick)
+    //{
+    //    yield return new WaitForSecondsRealtime(wait);
+    //    Time.timeScale = 1.0f;
+    //    dirtkick.Play();
+    //    isPlaying = true;
+    //}
 
     void CheckIfAttack()
     {
