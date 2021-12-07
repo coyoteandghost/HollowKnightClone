@@ -13,9 +13,6 @@ public class PlayerMove : MonoBehaviour
     public float attackReload;
     public float knockbackReturn = 0.996f;
 
-    public AudioClip footstep, jump, land;
-    AudioSource source;
-
     float currAttackTime = 0f;
     //float currJumpTime = 0f;
     int dir = 1;
@@ -25,6 +22,8 @@ public class PlayerMove : MonoBehaviour
     GameObject currentAttack;
 
     Vector2 knockbackDirection = Vector2.zero;
+
+    HandleSound soundHandler;
 
     float hmove;
     Rigidbody2D rb;
@@ -43,7 +42,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        source = GetComponent<AudioSource>();
+        soundHandler = FindObjectOfType<HandleSound>();
     }
 
     // Update is called once per frame
@@ -62,6 +61,8 @@ public class PlayerMove : MonoBehaviour
 
         hmove = Input.GetAxis("Horizontal") * speed;
         rb.velocity = new Vector2(hmove, rb.velocity.y);
+        if (hmove != 0 && isGrounded) soundHandler.PlaySound(0);
+        else soundHandler.StopSound(0);
         if (Input.GetAxisRaw("Vertical") != 0)
         {
             vertDir = (int)Mathf.Sign(Input.GetAxis("Vertical"));
@@ -70,21 +71,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             verticalSlash = false;
-            if (hmove != 0)
-            {
-                dir = (int)Mathf.Sign(hmove);
-                if (!source.isPlaying && jumpTimeCounter == 0)
-                {
-                    source.clip = footstep;
-                    //source.Play();
-                    //source.loop = true;
-                }
-            }
-            else
-            {
-                //source.Stop();
-                //source.loop = false;
-            }
+            if (hmove != 0) dir = (int)Mathf.Sign(hmove);
         }
         sprite.flipX = dir < 0;
     }
@@ -118,12 +105,10 @@ public class PlayerMove : MonoBehaviour
         {
             isJumping = true;
             jumpTimeCounter = jumpTime;
+            gameObject.GetComponent<PlayerSprite>().touchingFloor = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            source.loop = false;
-                //source.Stop();
-                source.clip = jump;
-                //source.Play();
-                jumpTimeCounter += Time.deltaTime;
+            jumpTimeCounter += Time.deltaTime;
+            soundHandler.PlaySound(1);
         }
 
         if (Input.GetKey(KeyCode.Z) && isJumping == true)
@@ -184,10 +169,8 @@ public class PlayerMove : MonoBehaviour
         if (collision.transform.position.y < transform.position.y)
         {
             jumpTimeCounter = 0;
-            //source.Stop();
-            source.loop = false;
-            source.clip = land;
-            //source.Play();
+            gameObject.GetComponent<PlayerSprite>().touchingFloor = true;
+            soundHandler.PlaySound(2);
         }
     }
 
@@ -198,5 +181,8 @@ public class PlayerMove : MonoBehaviour
             Camera.main.GetComponent<CameraFollow>().worldBounds = (BoxCollider2D)collision;
             Camera.main.SendMessage("SetBounds");
         }
+        else if (collision.gameObject.name == "Music1") soundHandler.StartMusic();
+        else if (collision.gameObject.name == "Music2") soundHandler.StartCoroutine("FadeIn", 1);
+        else if (collision.gameObject.name == "Music2") soundHandler.StartCoroutine("FadeIn", 2);
     }
 }
