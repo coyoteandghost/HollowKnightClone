@@ -8,8 +8,8 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sprite;
     
     public float speed;
-    public float jumpSpeed;
-    public float jumpHoldTime;
+    //public float jumpSpeed;
+    //public float jumpHoldTime;
     public float attackReload;
     public float knockbackReturn = 0.996f;
 
@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     AudioSource source;
 
     float currAttackTime = 0f;
-    float currJumpTime = 0f;
+    //float currJumpTime = 0f;
     int dir = 1;
     int vertDir = 1;
     public bool verticalSlash = false;
@@ -28,6 +28,16 @@ public class PlayerMove : MonoBehaviour
 
     float hmove;
     Rigidbody2D rb;
+
+    private bool isGrounded;
+    public Transform feetPos;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+
+    public float jumpForce;
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
 
     private void Start()
     {
@@ -63,7 +73,7 @@ public class PlayerMove : MonoBehaviour
             if (hmove != 0)
             {
                 dir = (int)Mathf.Sign(hmove);
-                if (!source.isPlaying && currJumpTime == 0)
+                if (!source.isPlaying && jumpTimeCounter == 0)
                 {
                     source.clip = footstep;
                     //source.Play();
@@ -80,7 +90,7 @@ public class PlayerMove : MonoBehaviour
     }
     void CheckJump()
     {
-        if (currJumpTime != 0)
+        /*if (currJumpTime != 0)
         {
             currJumpTime += Time.deltaTime;
             if (Input.GetKey(KeyCode.Z) && currJumpTime < jumpHoldTime)
@@ -100,7 +110,41 @@ public class PlayerMove : MonoBehaviour
                 //source.Play();
                 currJumpTime += Time.deltaTime;
             }
+        }*/
+
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+
+        if(isGrounded == true && Input.GetKeyDown(KeyCode.Z))
+        {
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            source.loop = false;
+                //source.Stop();
+                source.clip = jump;
+                //source.Play();
+                jumpTimeCounter += Time.deltaTime;
         }
+
+        if (Input.GetKey(KeyCode.Z) && isJumping == true)
+        {
+            if(jumpTimeCounter > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            isJumping = false;
+        }
+            
+        
     }
     void CheckAttack()
     {
@@ -139,7 +183,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.transform.position.y < transform.position.y)
         {
-            currJumpTime = 0;
+            jumpTimeCounter = 0;
             //source.Stop();
             source.loop = false;
             source.clip = land;
