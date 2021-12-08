@@ -11,6 +11,9 @@ public class Paralax : MonoBehaviour
 
     public GameObject mainCam;
     public float parallaxAmnt;
+    
+    BoxCollider2D camBoundary;
+    public BoxCollider2D bgBoundary;
 
     bool nearby;
 
@@ -26,30 +29,37 @@ public class Paralax : MonoBehaviour
 
     void Update()
     {
-        float tempX = mainCam.transform.position.x * (1 - parallaxAmnt); //checking if sprite about to be off the screen
-        float tempY = mainCam.transform.position.y * (1 - parallaxAmnt);
+        //float tempX = mainCam.transform.position.x * (1 - parallaxAmnt); //checking if sprite about to be off the screen
+        //float tempY = mainCam.transform.position.y * (1 - parallaxAmnt);
 
-        float distX = (mainCam.transform.position.x * parallaxAmnt); // the distance the image is travelling... moving in relation to the cam move
-        float distY = mainCam.transform.position.y * parallaxAmnt;
+        float distX = mainCam.transform.localPosition.x * parallaxAmnt; // the distance the image is travelling... moving in relation to the cam move
+        float distY = mainCam.transform.localPosition.y * parallaxAmnt;
 
-        float distanceX = Mathf.Abs(mainCam.transform.position.x) - Mathf.Abs(gameObject.transform.position.x);
-        float distanceY = Mathf.Abs(mainCam.transform.position.y) - Mathf.Abs(gameObject.transform.position.y); 
+        camBoundary = mainCam.GetComponent<CameraFollow>().worldBounds;
 
-        if (distanceX < length && distanceY < height)
-        {
-            nearby = true;
-        } else
-        {
-            nearby = false;
-            transform.position = new Vector3(startPosX, startPosY, transform.position.z);
-        }
-
-        Debug.Log(nearby);
-
-        if (nearby)
+        if (camBoundary == bgBoundary)
         {
             transform.position = new Vector3(startPosX + distX, startPosY + distY, transform.position.z);
         }
+        else
+        {
+            transform.position = new Vector3(startPosX, startPosY, transform.position.z);
+        }
+
+
+
+        //float distanceX = Mathf.Abs(mainCam.transform.position.x) - Mathf.Abs(gameObject.transform.position.x);
+        //float distanceY = Mathf.Abs(mainCam.transform.position.y) - Mathf.Abs(gameObject.transform.position.y); 
+
+        //if (distanceX < length && distanceY < height)
+        //{
+        //    nearby = true;
+        //} else
+        //{
+        //    nearby = false;
+        //}
+
+    
 
         //if (tempX > startPosX + length) //if greater than length of sprite and current location
         //{
@@ -71,4 +81,10 @@ public class Paralax : MonoBehaviour
 
 
     }
+
+
+
+
+
+
 }
