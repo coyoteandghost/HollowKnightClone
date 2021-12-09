@@ -179,10 +179,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             }
 
 
-            if (collision.gameObject.tag == "Enemy")
-            {
-                flashEffect.Flash();
-            }
+           
 
 
         }
