@@ -18616,6 +18616,16 @@ Transform:
   m_Father: {fileID: 805646033}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42.499}
+--- !u!95 &910079407 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2825208947519700223, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+  m_PrefabInstance: {fileID: 1348439248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &910079408 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3857893699350874760, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+  m_PrefabInstance: {fileID: 1348439248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &910169317
 GameObject:
   m_ObjectHideFlags: 0
@@ -27652,11 +27662,11 @@ PrefabInstance:
     - target: {fileID: 306722455, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: playerSprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 910079407}
     - target: {fileID: 306722455, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: currentSprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 910079408}
     - target: {fileID: 1772047836, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: knockbackReturn
       value: 0.00002
