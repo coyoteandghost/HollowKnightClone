@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
         YMax = worldBounds.bounds.max.y;
 
         camSize = mainCam.orthographicSize; //gets size of camera
-        camRatio = (camSize * 9f) / 16.0f; // creates ratio of cameras width to overall bounds
+        camRatio = (camSize * 16f) / 9f; // creates ratio of cameras width to overall bounds
     }
 
     private void FixedUpdate()
