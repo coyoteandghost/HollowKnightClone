@@ -25,7 +25,12 @@ public class SpikeBehavior : MonoBehaviour
 
             FindObjectOfType<freezeFrame>().Stop();
 
-            StartCoroutine(Respawn(duration, collision.gameObject));
+
+            if(collision.gameObject.GetComponent<PlayerHP>().health != 0)
+            {
+                StartCoroutine(Respawn(duration, collision.gameObject));
+            }
+            
         }
     }
 

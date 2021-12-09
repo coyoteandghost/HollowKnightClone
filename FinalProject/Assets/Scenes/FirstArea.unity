@@ -22647,6 +22647,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6696596022582177719, guid: 97c815742c410b94c88c487237857fd1, type: 3}
   m_PrefabInstance: {fileID: 1348439248}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1141131080 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9096649104157598663, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+  m_PrefabInstance: {fileID: 1348439248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1141131081 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2486967002419067653, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+  m_PrefabInstance: {fileID: 1348439248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1148042413
 GameObject:
   m_ObjectHideFlags: 0
@@ -26789,6 +26799,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 306722455, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+      propertyPath: playerSprite
+      value: 
+      objectReference: {fileID: 1141131081}
+    - target: {fileID: 306722455, guid: 97c815742c410b94c88c487237857fd1, type: 3}
+      propertyPath: currentSprite
+      value: 
+      objectReference: {fileID: 1141131080}
     - target: {fileID: 1772047836, guid: 97c815742c410b94c88c487237857fd1, type: 3}
       propertyPath: knockbackReturn
       value: 0.00002
