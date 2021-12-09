@@ -1,5 +1,8 @@
 ...
 ...
 Oh hello, I didn't mean to ignore you, I was just working on this painting.
-My name is Lukan, I'm from Autumnmore, you'll probably pass it as you go through that giant door
-I'll meet you there soon, and maybe again, throughout your travels. I love visiting new places and painting them.
+My name is Lukan, I'm from Autumnmore, and by the looks of it, so are you!
+I haven't seen you around before, and I've lived here for a while, you must have been gone for a long time my friend.
+I'll meet you back at Autumnmore after I finish my painting, it's just over yonder, can't miss the entrance.
+It was very nice to meet you friend, oh and...
+Welcome home.
