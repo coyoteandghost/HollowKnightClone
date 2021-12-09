@@ -11925,7 +11925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600134955}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 88.2, y: 27.6, z: -24.24207}
+  m_LocalPosition: {x: 88.2, y: 28.4, z: -24.24207}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1387808307}
@@ -11970,7 +11970,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.55217, y: 0.20363379}
+  m_Size: {x: 12.55217, y: 0.07058215}
   m_EdgeRadius: 0
 --- !u!1 &601405657
 GameObject:
@@ -14441,7 +14441,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.5346165, y: 5.2705383}
+  m_Offset: {x: 5.5346165, y: 3.63454}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -14452,7 +14452,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.15797, y: 17.533386}
+  m_Size: {x: 18.15797, y: 20.805382}
   m_EdgeRadius: 0
 --- !u!1 &709840739
 GameObject:
@@ -29877,7 +29877,7 @@ PrefabInstance:
     - target: {fileID: 4095642396896245334, guid: 908ea71f5146a4e419f247a039c36ca5, type: 3}
       propertyPath: myAnim
       value: 
-      objectReference: {fileID: 1380731693}
+      objectReference: {fileID: 0}
     - target: {fileID: 4136428061896842165, guid: 908ea71f5146a4e419f247a039c36ca5, type: 3}
       propertyPath: m_Name
       value: Lukan
