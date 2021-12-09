@@ -176,25 +176,34 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        switch(collision.gameObject.name)
+        {
+            case "Music1":
+                soundHandler.StartMusic();
+                Destroy(collision.gameObject);
+                break;
+            case "Music2":
+                soundHandler.StartMusic();
+                Destroy(collision.gameObject);
+                break;
+            case "Music3":
+                soundHandler.StartCoroutine("FadeIn", 2);
+                Destroy(collision.gameObject);
+                break;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("CameraControl"))
         {
-            Camera.main.GetComponent<CameraFollow>().worldBounds = (BoxCollider2D)collision;
+            CameraTrigger cameraTrigger = collision.gameObject.GetComponent<CameraTrigger>();
+            float camCoord;
+            if (cameraTrigger.triggerIsVertical) camCoord = transform.position.y - collision.transform.position.y;
+            else camCoord = transform.position.x - collision.transform.position.x;
+            if (camCoord < 0) Camera.main.GetComponent<CameraFollow>().worldBounds = cameraTrigger.leftOrDownBound;
+            else Camera.main.GetComponent<CameraFollow>().worldBounds = cameraTrigger.rightOrUpBound;
             Camera.main.SendMessage("SetBounds");
-        }
-        else if (collision.gameObject.name == "Music1")
-        {
-            soundHandler.StartMusic();
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.name == "Music2")
-        {
-            soundHandler.StartCoroutine("FadeIn", 1);
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.name == "Music3")
-        {
-            soundHandler.StartCoroutine("FadeIn", 2);
-            Destroy(collision.gameObject);
         }
     }
 }
