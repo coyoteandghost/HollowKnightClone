@@ -11,6 +11,8 @@ public class PlayerHP : MonoBehaviour
     public int healthMin;
     public int hpDisplayed;
 
+    public BoxCollider2D respawnBounds;
+
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -66,6 +68,9 @@ public class PlayerHP : MonoBehaviour
             if (health == healthMin)
             {
                 gameObject.transform.position = new Vector3(0, 0, 0);
+                Camera.main.GetComponent<CameraFollow>().worldBounds = respawnBounds;
+                Camera.main.SendMessage("SetBounds");
+
                 health = healthMax;
             }
         }

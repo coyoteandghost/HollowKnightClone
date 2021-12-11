@@ -8,6 +8,7 @@ public class SpikeBehavior : MonoBehaviour
  
 
     public GameObject teleportSpot;
+    public BoxCollider2D teleportBounds;
     public Vector3 safePos;
 
     public float duration;
@@ -22,6 +23,7 @@ public class SpikeBehavior : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHP>().health -= 1; //whenplayer gets hit, minus health
 
             safePos = new Vector3(teleportSpot.transform.position.x, teleportSpot.transform.position.y, 0);
+            teleportBounds = teleportSpot.GetComponent<SafeCameraBounds>().cameraBounds;
 
             FindObjectOfType<freezeFrame>().Stop();
 
@@ -40,6 +42,8 @@ public class SpikeBehavior : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration); //wait one second 
         Time.timeScale = 1.0f;
         c.gameObject.GetComponent<Transform>().position = safePos; //sends player to safePos
+        Camera.main.GetComponent<CameraFollow>().worldBounds = teleportBounds;
+        Camera.main.SendMessage("SetBounds");
     }
 
 }

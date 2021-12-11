@@ -177,11 +177,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 gameObject.GetComponent<PlayerSprite>().touchingFloor = true;
                 soundHandler.PlaySound(2);
             }
-
-
-           
-
-
+            
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -193,7 +189,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                     Destroy(collision.gameObject);
                     break;
                 case "Music2":
-                    soundHandler.StartMusic();
+                    soundHandler.StartCoroutine("FadeIn", 1);
                     Destroy(collision.gameObject);
                     break;
                 case "Music3":
