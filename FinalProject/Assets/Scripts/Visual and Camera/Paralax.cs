@@ -11,9 +11,7 @@ public class Paralax : MonoBehaviour
 
     public GameObject mainCam;
     public float parallaxAmnt;
-    
-    BoxCollider2D camBoundary;
-    public BoxCollider2D bgBoundary;
+
 
     bool nearby;
 
@@ -26,6 +24,15 @@ public class Paralax : MonoBehaviour
         height = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
+    private void OnBecameInvisible()
+    {
+        nearby = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        nearby = true;
+    }
 
     void Update()
     {
@@ -35,9 +42,7 @@ public class Paralax : MonoBehaviour
         float distX = mainCam.transform.localPosition.x * parallaxAmnt; // the distance the image is travelling... moving in relation to the cam move
         float distY = mainCam.transform.localPosition.y * parallaxAmnt;
 
-        camBoundary = mainCam.GetComponent<CameraFollow>().worldBounds;
-
-        if (camBoundary == bgBoundary)
+        if (nearby)
         {
             transform.position = new Vector3(startPosX + distX, startPosY + distY, transform.position.z);
         }
