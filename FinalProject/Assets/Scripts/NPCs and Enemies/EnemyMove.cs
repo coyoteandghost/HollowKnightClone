@@ -112,8 +112,12 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 FindObjectOfType<freezeFrame>().Stop();
                 enemyHP--;
                 enemyDie();
-                ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x), false);
-                FindObjectOfType<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
+                if (collision.transform.rotation.eulerAngles.z == 270f) FindObjectOfType<PlayerMove>().HitJump();
+                else
+                {
+                    ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x), false);
+                    FindObjectOfType<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
+                }
             }
         }
 

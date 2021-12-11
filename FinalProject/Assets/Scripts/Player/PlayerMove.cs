@@ -11,13 +11,10 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         SpriteRenderer sprite;
 
         public float speed;
-        //public float jumpSpeed;
-        //public float jumpHoldTime;
         public float attackReload;
         public float knockbackReturn = 0.996f;
 
         float currAttackTime = 0f;
-        //float currJumpTime = 0f;
         int dir = 1;
         int vertDir = 1;
         public bool verticalSlash = false;
@@ -40,6 +37,8 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         private float jumpTimeCounter;
         public float jumpTime;
         private bool isJumping;
+        public float hitJumpTime;
+        private float hitJumpCounter;
 
         [SerializeField] SimpleFlash flashEffect;
 
@@ -82,29 +81,14 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         }
         void CheckJump()
         {
-            /*if (currJumpTime != 0)
-            {
-                currJumpTime += Time.deltaTime;
-                if (Input.GetKey(KeyCode.Z) && currJumpTime < jumpHoldTime)
-                {
-                    gameObject.GetComponent<PlayerSprite>().touchingFloor = false;
-                    rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Z))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                if (currJumpTime == 0)
-                {
-                    source.loop = false;
-                    //source.Stop();
-                    source.clip = jump;
-                    //source.Play();
-                    currJumpTime += Time.deltaTime;
-                }
-            }*/
-
             isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+
+            if (hitJumpCounter > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                hitJumpCounter -= Time.deltaTime;
+                Debug.Log("hitjump!");
+            }
 
             if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))
             {
@@ -167,6 +151,11 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
         {
             if (vertical) knockbackDirection = new Vector2(0f, amount);
             else knockbackDirection = new Vector2(amount, 0f);
+        }
+
+        public void HitJump()
+        {
+            hitJumpCounter = hitJumpTime;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
