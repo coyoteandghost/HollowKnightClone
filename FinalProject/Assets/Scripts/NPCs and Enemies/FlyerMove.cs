@@ -86,9 +86,13 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 enemyHP--;
                 enemyDie();
                 bool isVertical = collision.transform.rotation.eulerAngles.z == 90f || collision.transform.rotation.eulerAngles.z == 270f;
-                if (collision.transform.rotation.eulerAngles.z == 270f) FindObjectOfType<PlayerMove>().HitJump();
-                ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.y - collision.gameObject.transform.position.y), isVertical);
-                if (!isVertical) FindObjectOfType<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
+                if (collision.transform.rotation.eulerAngles.z == 270f) player.GetComponent<PlayerMove>().HitJump();
+                if (isVertical) ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.y - player.gameObject.transform.position.y), true);
+                else
+                {
+                    ApplyKnockback(hitKnockback * Mathf.Sign(transform.position.x - player.gameObject.transform.position.x), false);
+                    player.GetComponent<PlayerMove>().ApplyKnockback(playerAtkKnockback * Mathf.Sign(player.transform.position.x - transform.position.x), false);
+                }
             }
         }
 
