@@ -29,9 +29,19 @@ public class openDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                sceneSwitch.SwitchScene(sceneName);
+                StartCoroutine(changeScene());
+                
             }
         }
+    }
+
+    IEnumerator changeScene()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        FindObjectOfType<Fade>().GetComponent<Fade>().blackScreen.SetBool("fadeOut", true);
+
+        yield return new WaitForSecondsRealtime(0.5f);
+        sceneSwitch.SwitchScene(sceneName);
     }
 
     /*private void OnDrawGizmosSelected()
