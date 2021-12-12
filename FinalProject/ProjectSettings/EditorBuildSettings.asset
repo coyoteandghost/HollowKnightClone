@@ -8,12 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FirstArea.unity
     guid: 4aa67ccd2660e01429e74dc3ab996d50
-  - enabled: 0
-    path: Assets/Scenes/IntroText.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 5ad9b0d3daaab2242bc8c2f8f12689bf
+  - enabled: 1
+    path: Assets/Scenes/IntroText.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/FirstArea.unity
     guid: 4aa67ccd2660e01429e74dc3ab996d50
