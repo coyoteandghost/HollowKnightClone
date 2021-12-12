@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6821f94fecbd374893c292d606177cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: FirstArea
+  newScene: IntroText
   timer: 1.65
 --- !u!4 &1490809205
 Transform:

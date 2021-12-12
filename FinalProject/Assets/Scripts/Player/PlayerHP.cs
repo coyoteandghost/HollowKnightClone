@@ -20,11 +20,14 @@ public class PlayerHP : MonoBehaviour
     public ParticleSystem bloodSys;
     public float deathTime = 1.5f;
 
+    public Animator fadeAnimator;
+
 
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(fadeAnimator);
         DeathCheck();
         UIHearts();
     }
@@ -83,8 +86,16 @@ public class PlayerHP : MonoBehaviour
     {
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        
+        yield return new WaitForSeconds(deathTime/2);
 
-        yield return new WaitForSeconds(deathTime);
+        fadeAnimator.GetComponent<Fade>().blackScreen.SetBool("fadeIn", false);
+        fadeAnimator.GetComponent<Fade>().blackScreen.SetBool("fadeOut", true);
+
+        yield return new WaitForSeconds(deathTime/2);
+
+        fadeAnimator.GetComponent<Fade>().blackScreen.SetBool("fadeOut", false);
+        fadeAnimator.GetComponent<Fade>().blackScreen.SetBool("fadeIn", true);
 
         Camera.main.GetComponent<CameraFollow>().worldBounds = respawnBounds;
         GetComponentInChildren<SpriteRenderer>().enabled = true;
