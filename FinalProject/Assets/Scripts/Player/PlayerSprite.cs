@@ -19,11 +19,6 @@ public class PlayerSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            return;
-        }
-
         CheckVelocity();
        // CheckMove();
         CheckIfAttack();
@@ -137,6 +132,11 @@ public class PlayerSprite : MonoBehaviour
 
     void CheckIfAttack()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.X) && playerSprite.GetBool("attacking") == false && Input.GetKey(KeyCode.UpArrow))
         {
             playerSprite.SetBool("up", true);

@@ -68,6 +68,7 @@ public class DialogueManager : MonoBehaviour
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
+        FindObjectOfType<HandleSound>().StopSound(0);
         dialoguePanel.SetActive(true);
 
         ContinueStory();
