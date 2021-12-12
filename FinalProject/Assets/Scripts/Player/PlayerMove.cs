@@ -87,7 +87,6 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 hitJumpCounter -= Time.deltaTime;
-                Debug.Log("hitjump!");
             }
 
             if (isGrounded == true && Input.GetKeyDown(KeyCode.Z))

@@ -17,6 +17,9 @@ public class PlayerHP : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public ParticleSystem bloodSys;
+    public float deathTime = 1.5f;
+
 
 
     // Update is called once per frame
@@ -67,13 +70,27 @@ public class PlayerHP : MonoBehaviour
         {
             if (health == healthMin)
             {
-                gameObject.transform.position = new Vector3(0, 0, 0);
-                Camera.main.GetComponent<CameraFollow>().worldBounds = respawnBounds;
-                Camera.main.SendMessage("SetBounds");
+                bloodSys.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                bloodSys.Play();
+                StartCoroutine(DeathCamera());
 
                 health = healthMax;
             }
         }
+    }
+
+    IEnumerator DeathCamera()
+    {
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+
+        yield return new WaitForSeconds(deathTime);
+
+        Camera.main.GetComponent<CameraFollow>().worldBounds = respawnBounds;
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        gameObject.transform.position = new Vector3(0, 0, 0);
+        Camera.main.SendMessage("SetBounds");
     }
 
 }

@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b653e1c07cd39ad4f81301ad89137bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAnim: {fileID: 0}
+  myAnim: {fileID: 3010353598019507602}
 --- !u!61 &4921231003423467768
 BoxCollider2D:
   m_ObjectHideFlags: 0
