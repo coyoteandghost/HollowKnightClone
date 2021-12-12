@@ -5,7 +5,7 @@ using UnityEngine;
 public class openDoor : MonoBehaviour
 {
     private bool playerDetected;
-    public Transform doorPos;
+    //public Transform doorPos;
     public float width;
     public float height;
 
@@ -23,21 +23,28 @@ public class openDoor : MonoBehaviour
 
     private void Update()
     {
-        playerDetected = Physics2D.OverlapBox(doorPos.position, new Vector2(width, height), 0, whatIsPlayer);
+        //playerDetected = Physics2D.OverlapBox(doorPos.position, new Vector2(width, height), 0, whatIsPlayer);
 
         if (playerDetected == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 sceneSwitch.SwitchScene(sceneName);
             }
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(doorPos.position, new Vector3(width, height, 1));
-    }
+    }*/
 
+    private void OnTriggerEnter2D(Collider2D collison)
+    {
+        if (collison.tag == "Player")
+        {
+            playerDetected = true;
+        }
+    }
 }
