@@ -21,7 +21,6 @@ public class callWalkingPart : MonoBehaviour
         }
 
         currentParticle.Play();
-        Debug.Log("burst");
     }
 
   

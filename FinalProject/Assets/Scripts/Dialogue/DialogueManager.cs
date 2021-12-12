@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool canContinueToNextLine = false;
 
+    private string line;
+
     private Coroutine displayLineCoroutine;
 
     private static DialogueManager instance;
@@ -54,6 +56,12 @@ public class DialogueManager : MonoBehaviour
         {
             ContinueStory();
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            dialogueText.text = line;
+            canContinueToNextLine = true;
+            StopCoroutine(displayLineCoroutine);
+        }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -71,7 +79,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-        dialogueText.text = " ";
+        dialogueText.text = "";
     }
 
     private void ContinueStory()
@@ -82,7 +90,8 @@ public class DialogueManager : MonoBehaviour
             {
                 StopCoroutine(displayLineCoroutine);
             }
-            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+            line = currentStory.Continue();
+            displayLineCoroutine = StartCoroutine(DisplayLine(line));
         }
         else
         {
@@ -92,13 +101,13 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DisplayLine(string line)
     {
-        dialogueText.text = " ";
+        dialogueText.text = "";
 
         canContinueToNextLine = false;
 
         foreach (char letter in line.ToCharArray())
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && dialogueText.text != "")
             {
                 dialogueText.text = line;
                 break;
