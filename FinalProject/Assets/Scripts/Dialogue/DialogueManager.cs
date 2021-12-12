@@ -52,11 +52,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (canContinueToNextLine && Input.GetKeyDown(KeyCode.Space))
+        if (canContinueToNextLine && Input.GetKeyDown(KeyCode.Z))
         {
             ContinueStory();
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Z))
         {
             dialogueText.text = line;
             canContinueToNextLine = true;
