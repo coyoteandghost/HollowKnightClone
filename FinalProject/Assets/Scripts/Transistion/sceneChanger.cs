@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class sceneChanger : MonoBehaviour
 {
     public string newScene;
+    public float timer;
     // Start is called before the first frame update
     public void nextScene()
     {
@@ -15,7 +16,7 @@ public class sceneChanger : MonoBehaviour
 
     IEnumerator delay()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(timer);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(newScene);
     }
