@@ -9,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private int soundIndex;
 
     private bool playerInRange;
     private void Awake()
@@ -25,6 +26,7 @@ public class DialogueTrigger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                FindObjectOfType<HandleSound>().PlaySound(soundIndex);
             }
         }
         else

@@ -30,7 +30,7 @@ public class openDoor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 StartCoroutine(changeScene());
-                
+                FindObjectOfType<HandleSound>().StartCoroutine("MusicOut");
             }
         }
     }
@@ -40,7 +40,7 @@ public class openDoor : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         FindObjectOfType<Fade>().GetComponent<Fade>().blackScreen.SetBool("fadeOut", true);
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1.5f);
         sceneSwitch.SwitchScene(sceneName);
     }
 

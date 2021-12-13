@@ -306,6 +306,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &531192731
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 125222437548321036, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 253adc8a889076b4d94f954bee9437f8, type: 3}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611930109955305119, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5185673058234340255, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5185673058234340255, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 253adc8a889076b4d94f954bee9437f8, type: 3}
+    - target: {fileID: 5185673058234340255, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849699434741107249, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+      propertyPath: m_Name
+      value: SoundHandler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
 --- !u!1 &796062067
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +732,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1696466448}
+        m_TargetAssemblyTypeName: HandleSound, Assembly-CSharp
+        m_MethodName: StopMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1238398051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,7 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newScene: IntroText
-  timer: 1.65
+  timer: 2
 --- !u!4 &1490809205
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,6 +1382,17 @@ Transform:
   m_Father: {fileID: 1740370104}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696466448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 888804759957964922, guid: 0ea9f452d089cb44f861db13dbbac881, type: 3}
+  m_PrefabInstance: {fileID: 531192731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f86a3be1523c6a4699a7f217cd2fc8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1740370103
 GameObject:
   m_ObjectHideFlags: 0

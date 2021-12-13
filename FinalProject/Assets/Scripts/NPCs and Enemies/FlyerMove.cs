@@ -15,6 +15,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
 
         SpriteRenderer sprite;
         Rigidbody2D rbody;
+        HandleSound soundHandler;
 
         int enemyHP = 3;
         
@@ -36,12 +37,17 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             sprite = GetComponent<SpriteRenderer>();
             rbody = GetComponent<Rigidbody2D>();
             player = GameObject.FindGameObjectWithTag("Player");
+            soundHandler = FindObjectOfType<HandleSound>();
         }
 
         void Update()
         {
 
-            if (Vector3.Distance(transform.position, player.transform.position) < followRange && !following) following = true;
+            if (Vector3.Distance(transform.position, player.transform.position) < followRange && !following)
+            {
+                following = true;
+                soundHandler.PlaySound(9);
+            }
             if (following)
             {
                 Vector3 move = (player.transform.position - transform.position).normalized;
@@ -69,6 +75,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
                 collision.gameObject.GetComponent<PlayerHP>().health -= 1;
                 FindObjectOfType<PlayerMove>().ApplyKnockback(playerKnockback * Mathf.Sign(collision.gameObject.transform.position.x - transform.position.x), false);
                 FindObjectOfType<freezeFrame>().Stop();
+                soundHandler.PlaySound(3);
             }
         }
 
@@ -103,7 +110,14 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash.Example
             {
                 bloodSys.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                 bloodSys.Play();
+                soundHandler.PlaySound(6);
+                soundHandler.PlaySound(8);
                 Destroy(gameObject);
+            }
+            else
+            {
+                soundHandler.PlaySound(4);
+                soundHandler.PlaySound(9);
             }
         }
     }

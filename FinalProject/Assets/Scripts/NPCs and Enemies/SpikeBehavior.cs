@@ -8,7 +8,7 @@ public class SpikeBehavior : MonoBehaviour
  
 
     public GameObject teleportSpot;
-    public BoxCollider2D teleportBounds;
+    BoxCollider2D teleportBounds;
     public Vector3 safePos;
 
     public float duration;
@@ -24,6 +24,8 @@ public class SpikeBehavior : MonoBehaviour
 
             safePos = new Vector3(teleportSpot.transform.position.x, teleportSpot.transform.position.y, 0);
             teleportBounds = teleportSpot.GetComponent<SafeCameraBounds>().cameraBounds;
+
+            FindObjectOfType<HandleSound>().PlaySound(3);
 
             FindObjectOfType<freezeFrame>().Stop();
 
